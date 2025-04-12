@@ -24,16 +24,21 @@ def home():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['username']
-        password = hashlib.sha256(request.form['password'].encode()).hexdigest()
+        try:
+            username = request.form['username']
+            password = hashlib.sha256(request.form['password'].encode()).hexdigest()
+            
+            cursor = mysql.connection.cursor()
+            cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
+            mysql.connection.commit()
+            cursor.close()
         
-        cursor = mysql.connection.cursor()
-        cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, password))
-        mysql.connection.commit()
-        cursor.close()
+            return redirect('/login')
         
-        return redirect('/login')
-    
+        except Exception as e:
+            print(f"Error during registration: {e}")
+            return "Internal Server Error", 500
+        
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
