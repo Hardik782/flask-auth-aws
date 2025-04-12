@@ -3,6 +3,9 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import hashlib
 import os
+import logging
+# Setup logging (place this once, at the top of app.py after imports)
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 app = Flask(__name__)
 
@@ -36,7 +39,7 @@ def register():
             return redirect('/login')
         
         except Exception as e:
-            print(f"Error during registration: {e}")
+            logging.error(f"Registration error: {str(e)}")
             return "Internal Server Error", 500
         
     return render_template('register.html')
