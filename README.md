@@ -43,8 +43,10 @@ This project demonstrates the deployment of a **Flask web application** on AWS u
 ├── venv/ (virtual environment)
 ├── requirements.txt
 └── README.md
+```
+---
 
-⚙️ Technologies Used
+## ⚙️ Technologies Used
 Python 3
 
 Flask
@@ -59,7 +61,8 @@ Systemd
 
 Git & GitHub
 
-🛠️ How to Deploy
+---
+## 🛠️ How to Deploy
 1. Clone the Repository
 bash
 Copy
@@ -109,8 +112,9 @@ Set up RDS in the same VPC
 Configure security groups
 
 Set up ALB and Auto Scaling Group
+---
 
-🌐 Application URL
+## 🌐 Application URL
 Accessible via Application Load Balancer DNS:
 
 arduino
