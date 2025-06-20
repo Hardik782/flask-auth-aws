@@ -4,7 +4,8 @@ import MySQLdb.cursors
 import hashlib
 import os
 import logging
-# Setup logging (place this once, at the top of app.py after imports)
+
+# Setup logging
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 app = Flask(__name__)
@@ -65,4 +66,4 @@ def login():
     return render_template('login.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
